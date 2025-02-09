@@ -1,0 +1,49 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table orders {
+  order_id VARCHAR(50) [pk]
+  quantity INT
+  price DECIMAL(10,2)
+  order_date DATETIME
+  shipping_address VARCHAR(100)
+  raw_data_source VARCHAR(50)
+  ingestion_timestamp DATETIME
+}
+
+Table customer {
+  customer_id VARCHAR(50) [pk]
+  name VARCHAR(50)
+  email VARCHAR(50)
+  address VARCHAR(100)
+  age INT
+  gender VARCHAR(10)
+  signup_date DATETIME
+  raw_data_source VARCHAR(50)
+  ingestion_timestamp DATETIME
+}
+
+Table products {
+  product_id VARCHAR(50) [pk]
+  name VARCHAR(50)
+  category VARCHAR(50)
+  brand VARCHAR(50)
+  cost_price DECIMAL(10,2)
+  selling_price DECIMAL(10,2)
+  raw_data_source VARCHAR(50)
+  ingestion_timestamp DATETIME
+}
+
+Table sales_transaction {
+  transaction_id VARCHAR(50)
+  order_id VARCHAR(50) [ref: - orders.order_id]
+  customer_id VARCHAR(50) [ref: - customer.customer_id]
+  product_id VARCHAR(50) [ref: - products.product_id]
+  total_amount DECIMAL(10,2)
+  discount DECIMAL(10,2)
+  tax DECIMAL(10,2)
+  refund_amount DECIMAL(10,2)
+  transaction_date DATETIME
+  raw_data_source VARCHAR(50)
+  ingestion_timestamp DATETIME
+}

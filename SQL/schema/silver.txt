@@ -1,0 +1,49 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table Dim_Products {
+   product_id UNIQUEIDENTIFIER pk
+ name NVARCHAR(100)
+ category NVARCHAR(50)
+ brand NVARCHAR(100)
+ cost_price DECIMAL(10,2)
+ selling_price DECIMAL(10,2)
+ markup_percentage DECIMAL(10,2)
+ profit_margin DECIMAL(10,2)
+ created_at DATETIME
+ updated_at DATETIME
+}
+
+Table Dim_Customers {
+   customer_id UNIQUEIDENTIFIER pk
+    name NVARCHAR(100)
+    email NVARCHAR(150)
+    address NVARCHAR(255)
+    age INT
+    gender NVARCHAR(10)
+    signup_date DATETIME
+    created_at DATETIME
+    updated_at DATETIME
+}
+
+Table Dim_Orders {
+  order_id UNIQUEIDENTIFIER pk
+  order_date DATETIME
+  shipping_address NVARCHAR(255)
+  created_at DATETIME
+  updated_at DATETIME
+}
+
+Table Fact_Sales_Transactions {
+  transaction_id UNIQUEIDENTIFIER pk
+  order_id UNIQUEIDENTIFIER [ref: - Dim_Orders.order_id]
+  customer_id UNIQUEIDENTIFIER [ref: - Dim_Customers.customer_id]
+  product_id UNIQUEIDENTIFIER [ref: - Dim_Products.product_id]
+  transaction_date DATETIME
+  discount DECIMAL(10,2)
+  tax DECIMAL(10,2)
+  refund_amount DECIMAL(10,2)
+  total_amount DECIMAL(10,2)
+  created_at DATETIME
+  updated_at DATETIME
+}
