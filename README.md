@@ -19,7 +19,7 @@ The **Gold Layer** follows the **Star Schema**:
 
 ## Setup & Installation  
 
-### 1) Prerequisites**  
+### 1) Prerequisites
 Ensure you have the following installed:  
 - Python (>= 3.8)  
 - SQL Server  
